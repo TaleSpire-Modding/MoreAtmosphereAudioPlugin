@@ -36,3 +36,5 @@ Shoutout to my Patreons on https://www.patreon.com/HolloFox recognising your
 mighty contribution to my caffeine addiciton:
 - John Fuller
 - [Tales Tavern](https://talestavern.com/) - MadWizard
+
+Also Thankyou DBrown24601 for helping with blobs. God i hate them
