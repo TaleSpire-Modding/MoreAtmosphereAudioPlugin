@@ -1,11 +1,11 @@
-# More Fogs Plugin
+# More Atmosphere Audio POC
 
 ## Install
 
 Currently you need to either follow the build guide down below or use the R2ModMan. 
 
 ## Usage
-
+By suppying a `.mp3`, `.aif`, `.wav` or a  `.ogg` file in the `CustomData\\Audio\\<Abmient | Music>` folder. The audio will be registered to the dropdown menu in the atmosphere settings. This is a POC which will most likely be taken over.
 
 ## How to Compile / Modify
 
@@ -21,6 +21,7 @@ You will need to add references to:
 * UnityEngine.InputLegacyModule.dll 
 * UnityEngine.UI
 * Unity.TextMeshPro
+* LordAshes.FAP
 ```
 
 Build the project.
