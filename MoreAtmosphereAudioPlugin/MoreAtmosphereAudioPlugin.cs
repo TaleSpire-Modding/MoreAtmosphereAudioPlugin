@@ -88,15 +88,13 @@ namespace MoreAtmosphereAudioPlugin
         }
 
 
-        public static void LoadAudioCallback(object[] args)
-        {
-            _singleton.StartCoroutine("LoadAudioFromSource", args);
-        }
+        internal static void LoadAudioCallback(object[] args)
+            => _singleton.StartCoroutine("LoadAudioFromSource", args);
+        
 
-        public static NGuid GenerateID(string id)
-        {
-            return new NGuid(System.Guid.Parse(CreateMD5(id)));
-        }
+        internal static NGuid GenerateID(string id)
+            => new NGuid(System.Guid.Parse(CreateMD5(id)));
+        
 
         private static string CreateMD5(string input)
         {

@@ -20,7 +20,7 @@ namespace MoreAtmosphereAudioPlugin.Patches
                 MusicData.Construct(builder,ref root,file.Key,file.Key,file.Value.Item1,file.Value.Item1,
                     new string[]{},"", file.Value.Item1, MusicData.MusicKind.Ambient);
                 var x = builder.CreateBlobAssetReference<MusicData>(Allocator.Persistent);
-                Debug.Log($"{MusicData.MusicKind.Ambient} Added:" + AssetDb.Music.TryAdd(file.Key, x.TakeView()));
+                Debug.Log($"{MusicData.MusicKind.Ambient} Added {file.Value.Item1}:" + AssetDb.Music.TryAdd(file.Key, x.TakeView()));
             }
 
             foreach (var file in MoreAtmosphereAudioPlugin.Music)
@@ -31,7 +31,7 @@ namespace MoreAtmosphereAudioPlugin.Patches
                 MusicData.Construct(builder, ref root, file.Key, file.Key, file.Value.Item1, file.Value.Item1,
                     new string[] { }, "", file.Value.Item1, MusicData.MusicKind.Music);
                 var x = builder.CreateBlobAssetReference<MusicData>(Allocator.Persistent);
-                Debug.Log($"{MusicData.MusicKind.Music} Added:" + AssetDb.Music.TryAdd(file.Key, x.TakeView()));
+                Debug.Log($"{MusicData.MusicKind.Music} Added {file.Value.Item1}:" + AssetDb.Music.TryAdd(file.Key, x.TakeView()));
             }
         }
     }
@@ -44,23 +44,18 @@ namespace MoreAtmosphereAudioPlugin.Patches
             ref AtmosphereManager.LoadedAudioClip __instance
         )
         {
-            if (MoreAtmosphereAudioPlugin.Ambient.ContainsKey(__instance.GUID) ||
-                MoreAtmosphereAudioPlugin.Music.ContainsKey(__instance.GUID))
-            {
-                if (____clip == null)
+            if (!MoreAtmosphereAudioPlugin.Ambient.ContainsKey(__instance.GUID) &&
+                !MoreAtmosphereAudioPlugin.Music.ContainsKey(__instance.GUID)) return true;
+            if (____clip != null) return true;
+            MoreAtmosphereAudioPlugin.LoadAudioCallback(
+                new object[]
                 {
-                    MoreAtmosphereAudioPlugin.LoadAudioCallback(
-                        new object[]
-                        {
-                            __instance,
-                            ____clip,
-                            ClipLoaded
-                        }
-                        );
-                    return false;
+                    __instance,
+                    ____clip,
+                    ClipLoaded
                 }
-            }
-            return true;
+            );
+            return false;
         }
     }
 }
